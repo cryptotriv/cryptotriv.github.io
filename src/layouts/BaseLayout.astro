@@ -1,0 +1,79 @@
+---
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+interface PersonSchema {
+  '@context': string;
+  '@type': string;
+  name: string;
+  jobTitle: string;
+  url: string;
+  image: string;
+  email: string;
+  knowsAbout: string[];
+  sameAs: string[];
+}
+
+const {
+  title = 'Triv — MEV Searcher & Systems Builder',
+  description = 'Triv is a crypto-native MEV searcher and systems builder with four-plus years across the DeFi stack.',
+  noindex = false,
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const socialImageUrl = new URL('/images/og-card.png', Astro.site);
+
+const structuredData: PersonSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Triv',
+  jobTitle: 'MEV Searcher',
+  url: 'https://cryptotriv.github.io',
+  image: socialImageUrl.href,
+  email: 'cryptotriv@gmail.com',
+  knowsAbout: ['MEV', 'DeFi', 'Smart Contract Security', 'Rust', 'Go', 'Solidity', 'Node.js'],
+  sameAs: ['https://github.com/cryptotriv', 'https://x.com/cryptotriv'],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0b0b10" />
+    <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Triv" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:alt" content="Triv" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@cryptotriv" />
+    <meta name="twitter:creator" content="@cryptotriv" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
+    <meta name="twitter:image:alt" content="Triv" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title}</title>
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <slot />
+  </body>
+</html>

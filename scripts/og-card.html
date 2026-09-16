@@ -1,0 +1,48 @@
+<!doctype html>
+<!-- Source for public/images/og-card.png. Regenerate with:
+     google-chrome --headless --disable-gpu --hide-scrollbars --window-size=1200,630 \
+       --screenshot=/tmp/og-card.png "file://$PWD/scripts/og-card.html"
+     node -e "require('sharp')('/tmp/og-card.png').png({compressionLevel:9,effort:10}).toFile('public/images/og-card.png')" -->
+<html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box;margin:0}
+html,body{width:1200px;height:630px;overflow:hidden}
+body{display:flex;background:#0b0b10;color:#f5f1f7;
+ font-family:"DejaVu Sans",system-ui,sans-serif;position:relative}
+body::before{content:"";position:absolute;inset:0;opacity:.5;
+ background-image:linear-gradient(rgba(241,112,255,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(241,112,255,.10) 1px,transparent 1px);
+ background-size:48px 48px}
+body::after{content:"";position:absolute;width:560px;height:560px;right:-110px;top:-120px;border-radius:50%;
+ background:radial-gradient(circle,rgba(241,112,255,.30) 0%,rgba(241,112,255,.07) 40%,transparent 70%);filter:blur(6px)}
+.copy{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:70px 0 70px 72px;width:690px}
+.mark{font-family:"DejaVu Sans Mono",monospace;font-size:30px;font-weight:700;letter-spacing:-.04em}
+.mark i{color:#f170ff;font-style:normal}
+.eyebrow{display:flex;align-items:center;gap:13px;margin-top:40px;color:#f170ff;
+ font-family:"DejaVu Sans Mono",monospace;font-size:16px;font-weight:700;letter-spacing:.14em}
+.eyebrow b{width:9px;height:9px;background:#f170ff;transform:rotate(45deg)}
+h1{margin-top:20px;font-size:70px;line-height:1.02;letter-spacing:-.05em;font-weight:700}
+h1 em{color:#f170ff;font-style:normal}
+p{margin-top:24px;max-width:580px;color:#c3bdc8;font-size:23px;line-height:1.5}
+.rule{margin-top:34px;display:flex;align-items:center;gap:18px}
+.rule s{width:54px;height:4px;background:#f170ff;text-decoration:none}
+.rule span{font-family:"DejaVu Sans Mono",monospace;font-size:15px;letter-spacing:.09em;color:#a1a1ad}
+.side{position:relative;z-index:2;flex:1;display:flex;align-items:center;justify-content:center}
+.frame{position:relative;width:330px;height:384px;overflow:hidden;background:#171720;
+ clip-path:polygon(12% 0,88% 0,100% 10%,100% 88%,88% 100%,12% 100%,0 90%,0 12%);
+ box-shadow:18px 18px 0 rgba(241,112,255,.16)}
+.frame img{width:100%;height:100%;object-fit:cover;object-position:center 32%;filter:grayscale(100%) contrast(1.12)}
+.frame::after{content:"";position:absolute;inset:0;background:linear-gradient(140deg,transparent 48%,rgba(241,112,255,.30));mix-blend-mode:screen}
+.tag{position:absolute;right:56px;top:52px;z-index:3;display:flex;align-items:center;gap:9px;padding:9px 15px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(23,23,32,.92);font-family:"DejaVu Sans Mono",monospace;font-size:13px;letter-spacing:.09em;color:#d8d3dd}
+ padding:10px 15px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(23,23,32,.92);
+ font-family:"DejaVu Sans Mono",monospace;font-size:14px;letter-spacing:.09em;color:#d8d3dd}
+.tag u{width:8px;height:8px;border-radius:50%;background:#f170ff;box-shadow:0 0 12px #f170ff;text-decoration:none}
+</style></head><body>
+<div class="copy">
+  <div class="mark">TRIV<i>_</i></div>
+  <div class="eyebrow"><b></b>MEV SEARCHER</div>
+  <h1>Finding edge in<br><em>complexity.</em></h1>
+  <p>Crypto-native builder &mdash; 4+ years across the MEV and DeFi stack.</p>
+  <div class="rule"><s></s><span>cryptotriv.github.io</span></div>
+</div>
+<div class="side"><div class="frame"><img src="../public/images/triv-profile.png"></div></div>
+<div class="tag"><u></u>AVAILABLE FOR WORK</div>
+</body></html>
