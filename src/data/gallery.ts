@@ -19,6 +19,10 @@ import piece17 from '../assets/gallery/17.webp';
 import piece18 from '../assets/gallery/18.webp';
 import piece19 from '../assets/gallery/19.webp';
 import piece20 from '../assets/gallery/20.webp';
+import piece21 from '../assets/gallery/21.webp';
+import piece22 from '../assets/gallery/22.webp';
+import piece23 from '../assets/gallery/23.webp';
+import piece24 from '../assets/gallery/24.webp';
 
 export type GalleryPiece =
   | { kind: 'image'; src: ImageMetadata; alt: string }
@@ -45,4 +49,8 @@ export const gallery: GalleryPiece[] = [
   { kind: 'image', src: piece18, alt: 'Chibi-style Triv surrounded by glitchy pixel shapes' },
   { kind: 'image', src: piece19, alt: 'Triv in a ruffled white collar against a dark background' },
   { kind: 'image', src: piece20, alt: 'Triv riding a bicycle beneath cherry blossoms' },
+  { kind: 'image', src: piece21, alt: 'Triv holding a handheld game console among blue sparkles' },
+  { kind: 'image', src: piece22, alt: 'Full-body Triv typing on a laptop on a magenta background' },
+  { kind: 'image', src: piece23, alt: 'Triv tangled in headphone cables on a pink background' },
+  { kind: 'image', src: piece24, alt: 'Triv in a black gothic lolita dress on a pink background' },
 ];
