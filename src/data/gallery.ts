@@ -20,6 +20,7 @@ import piece21 from '../assets/gallery/21.webp';
 import piece22 from '../assets/gallery/22.webp';
 import piece23 from '../assets/gallery/23.webp';
 import piece24 from '../assets/gallery/24.webp';
+import piece25 from '../assets/gallery/25.webp';
 
 export type GalleryPiece =
   | { number: number; kind: 'image'; src: ImageMetadata; alt: string }
@@ -47,4 +48,5 @@ export const gallery: GalleryPiece[] = [
   { number: 22, kind: 'image', src: piece22, alt: 'Full-body Triv typing on a laptop on a magenta background' },
   { number: 23, kind: 'image', src: piece23, alt: 'Triv tangled in headphone cables on a pink background' },
   { number: 24, kind: 'image', src: piece24, alt: 'Triv in a black gothic lolita dress on a pink background' },
+  { number: 25, kind: 'image', src: piece25, alt: 'Chibi Triv with a laptop in a round badge' },
 ];
