@@ -50,3 +50,11 @@ export const gallery: GalleryPiece[] = [
   { number: 24, kind: 'image', src: piece24, alt: 'Triv in a black gothic lolita dress on a pink background' },
   { number: 25, kind: 'image', src: piece25, alt: 'Chibi Triv with a laptop in a round badge' },
 ];
+
+export const galleryPreview: GalleryPiece[] = [1, 10, 4, 20, 24, 12, 3, 22].map((number) => {
+  const piece = gallery.find((candidate) => candidate.number === number);
+  if (!piece) {
+    throw new Error(`Gallery preview references missing piece ${number}`);
+  }
+  return piece;
+});

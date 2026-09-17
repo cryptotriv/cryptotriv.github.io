@@ -43,16 +43,25 @@ export function justifyGallery(grid: HTMLElement): void {
     const width = grid.clientWidth;
     const gap = parseFloat(style.columnGap);
     const targetHeight = parseFloat(style.getPropertyValue('--row'));
-    for (const row of planRows(ratios, width, gap, targetHeight)) {
+    const maxRows = style.getPropertyValue('--max-rows').trim();
+    const planned = planRows(ratios, width, gap, targetHeight);
+    const complete = planned.filter((row) => row.complete);
+    const rows = maxRows === '' ? planned : (complete.length > 0 ? complete : planned).slice(0, Number(maxRows));
+    const shown = new Set<number>();
+    for (const row of rows) {
       let used = 0;
       for (let index = row.start; index <= row.end; index += 1) {
         const last = index === row.end;
         const itemWidth = row.complete && last ? width - used - gap * (row.end - row.start) : Math.floor(ratios[index] * row.height);
         items[index].style.width = `${itemWidth}px`;
         items[index].style.height = `${row.height}px`;
+        shown.add(index);
         used += itemWidth;
       }
     }
+    items.forEach((item, index) => {
+      item.hidden = !shown.has(index);
+    });
     grid.dataset.justified = '';
   };
 
