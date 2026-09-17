@@ -11,7 +11,6 @@ import piece12 from '../assets/gallery/12.webp';
 import piece13Poster from '../assets/gallery/13-poster.webp';
 import piece14 from '../assets/gallery/14.webp';
 import piece15 from '../assets/gallery/15.webp';
-import piece16 from '../assets/gallery/16.webp';
 import piece17 from '../assets/gallery/17.webp';
 import piece18 from '../assets/gallery/18.webp';
 import piece19 from '../assets/gallery/19.webp';
@@ -39,7 +38,6 @@ export const gallery: GalleryPiece[] = [
   { number: 13, kind: 'video', src: '/gallery/13.mp4', poster: piece13Poster, alt: 'Pixel-art animation of Triv turning around to wave inside a retro desktop window' },
   { number: 14, kind: 'image', src: piece14, alt: 'Full-length Triv in a swimsuit and open jacket against a summer sky' },
   { number: 15, kind: 'image', src: piece15, alt: 'Triv in a patterned jacket under a starry sky' },
-  { number: 16, kind: 'image', src: piece16, alt: 'Triv in a black lace dress adjusting her headphones, high-resolution version' },
   { number: 17, kind: 'image', src: piece17, alt: 'Triv in a cat-ear hoodie against a neon screen backdrop' },
   { number: 18, kind: 'image', src: piece18, alt: 'Chibi-style Triv surrounded by glitchy pixel shapes' },
   { number: 19, kind: 'image', src: piece19, alt: 'Triv in a ruffled white collar against a dark background' },
