@@ -1,38 +1,20 @@
 ---
-import type { ImageMetadata } from 'astro';
 import { Image, getImage } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
-
-const alts = [
-  'Triv with glowing headphones on a magenta background',
-  'Triv in a purple scarf and white hoodie',
-  'Triv smiling in a grey hoodie on a magenta background',
-  'Sketch-style close-up of Triv with glowing headphones',
-  'Moody painted portrait of Triv in a blue jacket',
-  'Chibi Triv with a laptop in a round badge',
-  'Triv in a black lace dress adjusting her headphones',
-  'Triv in an open jacket against a summer sky',
-  'Triv in a purple scarf and white hoodie, alternate version',
-  'Wide illustration of several Triv characters around a desk setup',
-];
-
-const modules = import.meta.glob<{ default: ImageMetadata }>('../../assets/gallery/*.{jpg,png}', { eager: true });
-const sources = Object.keys(modules).sort().map((path) => modules[path].default);
-
-if (sources.length !== alts.length) {
-  throw new Error(`Gallery has ${sources.length} images but ${alts.length} alt texts`);
-}
+import { gallery } from '../../data/gallery';
 
 const pieces = await Promise.all(
-  sources.map(async (src, index) => ({
-    src,
-    alt: alts[index],
-    number: String(index + 1).padStart(2, '0'),
-    wide: src.width / src.height > 1.4,
-    full: await getImage({ src, width: Math.min(src.width, 2400), format: 'webp' }),
-  })),
+  gallery.map(async (piece, index) => {
+    const number = String(index + 1).padStart(2, '0');
+    if (piece.kind === 'video') {
+      const poster = await getImage({ src: piece.poster, width: 600, format: 'webp' });
+      return { ...piece, number, href: piece.src, poster: poster.src };
+    }
+    const full = await getImage({ src: piece.src, width: Math.min(piece.src.width, 2400), format: 'webp' });
+    return { ...piece, number, href: full.src };
+  }),
 );
 ---
 
@@ -46,9 +28,13 @@ const pieces = await Promise.all(
       <p class="gallery-intro">Illustrations of Triv across styles and moods. Select any piece to open it at full size.</p>
       <ol class="gallery-grid">
         {pieces.map((piece) => (
-          <li class:list={['gallery-item', { 'gallery-wide': piece.wide }]}>
-            <a href={piece.full.src} target="_blank" rel="noopener noreferrer" aria-label={`Open piece ${piece.number} at full size: ${piece.alt}`}>
-              <Image src={piece.src} alt={piece.alt} widths={piece.wide ? [760, 1180, 1800] : [400, 600, 900]} sizes={piece.wide ? '(max-width: 760px) calc(100vw - 32px), 1180px' : '(max-width: 760px) calc(50vw - 22px), (max-width: 1228px) calc(33vw - 24px), 380px'} loading="lazy" />
+          <li class="gallery-item">
+            <a href={piece.href} target="_blank" rel="noopener noreferrer" aria-label={`Open piece ${piece.number} at full size: ${piece.alt}`}>
+              {piece.kind === 'video' ? (
+                <video src={piece.src} poster={piece.poster} muted loop playsinline preload="none" aria-hidden="true" data-gallery-video></video>
+              ) : (
+                <Image src={piece.src} alt="" widths={[300, 450, 600]} sizes="(max-width: 760px) calc(50vw - 22px), (max-width: 1023px) calc(33vw - 24px), 285px" loading="lazy" />
+              )}
               <span class="gallery-number" aria-hidden="true">{piece.number}</span>
             </a>
           </li>
@@ -59,3 +45,20 @@ const pieces = await Promise.all(
 
   <SiteFooter />
 </BaseLayout>
+
+<script>
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const videos = document.querySelectorAll<HTMLVideoElement>('[data-gallery-video]');
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        const video = entry.target as HTMLVideoElement;
+        if (entry.isIntersecting) {
+          void video.play();
+        } else {
+          video.pause();
+        }
+      }
+    });
+    videos.forEach((video) => observer.observe(video));
+  }
+</script>
