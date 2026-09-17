@@ -1,0 +1,18 @@
+---
+interface Props {
+  current?: 'gallery';
+}
+
+const { current } = Astro.props;
+---
+
+<header class="site-header shell" id="top">
+  <a class="wordmark" href="/#top" aria-label="Triv home">TRIV<span>_</span></a>
+  <nav aria-label="Primary navigation">
+    <a href="/#about">About</a>
+    <a href="/#work">Work</a>
+    <a href="/gallery/" aria-current={current === 'gallery' ? 'page' : undefined}>Gallery</a>
+    <a href="/#contact">Contact</a>
+  </nav>
+  <a class="header-availability" href="/#contact"><i></i> Available</a>
+</header>

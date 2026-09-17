@@ -1,28 +1,21 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 import mevDashboard from '../assets/work/mev-dashboard.png';
 import youtubeThumb from '../assets/work/youtube.jpg';
 
 const tickerItems = ['MEV SEARCHING', 'SMART CONTRACT SECURITY', 'DEFI INFRASTRUCTURE', 'AI-NATIVE WORKFLOWS'];
 const tickerRepeats = 3;
 const skills = ['Rust', 'Go', 'Solidity', 'Node.js'];
-const year = new Date().getFullYear();
 ---
 
 <BaseLayout>
-  <header class="site-header shell">
-    <a class="wordmark" href="#top" aria-label="Triv home">TRIV<span>_</span></a>
-    <nav aria-label="Primary navigation">
-      <a href="#about">About</a>
-      <a href="#work">Work</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <a class="header-availability" href="#contact"><i></i> Available</a>
-  </header>
+  <SiteHeader />
 
   <main id="main-content">
-    <section class="hero shell" id="top" aria-labelledby="hero-title">
+    <section class="hero shell" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="eyebrow"><span></span> Solo MEV searcher · 2022—now</p>
         <h1 id="hero-title">Crypto from <em>top to bottom.</em></h1>
@@ -129,5 +122,5 @@ const year = new Date().getFullYear();
     </section>
   </main>
 
-  <footer class="site-footer shell"><a class="wordmark" href="#top">TRIV<span>_</span></a><p>© {year} Triv. Built at the intersection.</p><a href="#top">Back to top ↑</a></footer>
+  <SiteFooter />
 </BaseLayout>

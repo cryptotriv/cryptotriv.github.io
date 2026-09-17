@@ -1,19 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const year = new Date().getFullYear();
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 ---
 
 <BaseLayout title="404 — Page not found · Triv" description="That page doesn’t exist. Head back to the Triv home page." noindex>
-  <header class="site-header shell">
-    <a class="wordmark" href="/" aria-label="Triv home">TRIV<span>_</span></a>
-    <nav aria-label="Primary navigation">
-      <a href="/#about">About</a>
-      <a href="/#work">Work</a>
-      <a href="/#contact">Contact</a>
-    </nav>
-    <a class="header-availability" href="/#contact"><i></i> Available</a>
-  </header>
+  <SiteHeader />
 
   <main class="notfound shell" id="main-content">
     <p class="eyebrow"><span></span> Error 404 · Route not found</p>
@@ -25,5 +17,5 @@ const year = new Date().getFullYear();
     </div>
   </main>
 
-  <footer class="site-footer shell"><a class="wordmark" href="/">TRIV<span>_</span></a><p>© {year} Triv. Built at the intersection.</p><a href="/">Back home ↑</a></footer>
+  <SiteFooter />
 </BaseLayout>
